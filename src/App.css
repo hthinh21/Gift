@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Lexend', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
 
@@ -13,6 +13,87 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+.continue-button {
+  margin-top: 30px;
+  padding: 15px 20px;
+  background: linear-gradient(45deg, #ff4fa3, #ff79c6);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: pulseBtn 1.5s infinite;
+  text-align: center;
+}
+
+.continue-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
+}
+
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
+/* Cập nhật page transition mượt hơn */
+.page {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.page.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.book-instruction-continue {
+  position: absolute;
+  bottom: -160px; /* GIỐNG book-instruction */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #ff4fa3, #ff79c6);
+  padding: 15px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  user-select: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.book-instruction-continue:hover {
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
+}
+
+
+/* Làm chữ "Nhấn để mở" mờ dần khi đã mở */
+.book-instruction {
+  transition: opacity 0.8s ease;
+  opacity: 1;
+}
+
+.book.opened ~ .book-instruction {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* Step 0: Màn hình bắt đầu với chữ Valentine */
 .step-0 {
@@ -48,6 +129,18 @@ body {
   color: #ff1493;
   font-weight: 500;
 }
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
@@ -106,7 +199,7 @@ body {
 }
 
 .logo-top-center img {
-  width: 180px;
+  width: 100px;
   height: auto;
   filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
 }
@@ -121,6 +214,8 @@ body {
 .happy-valentine {
   text-align: center;
   transition: opacity 1s ease-out;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .happy-valentine.fade-out {
@@ -129,18 +224,23 @@ body {
 }
 
 .happy-valentine h1 {
-  font-size: 55px;
+  font-size: clamp(24px, 6vw, 55px);
   color: #ff1493;
-  opacity: 0;
-  animation: fadeInText 3s forwards;
+  text-align: center;
+  word-break: break-word;
 }
 
 .happy-valentine .subtitle {
   font-size: 40px;
-  color: #ff69b4;
+  color: #8EC5E8;
   margin-top: 30px;
   opacity: 0;
-  animation: fadeInText 3s 1.5s forwards;
+  animation: fadeInText 8s forwards;
+text-shadow:
+    -3px -3px 0 white,
+     3px -3px 0 white,
+    -3px  3px 0 white,
+     3px  3px 0 white;
 }
 
 .happy-valentine .click-instruction {
@@ -150,6 +250,15 @@ body {
   opacity: 0;
   animation: fadeInText 3s 3s forwards;
   cursor: pointer;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
 }
 
 @keyframes fadeInText {
@@ -162,6 +271,7 @@ body {
   perspective: 2000px;
   opacity: 0;
   animation: bookAppear 1s 1s forwards;
+  
 }
 
 @keyframes bookAppear {
@@ -247,7 +357,7 @@ body {
 }
 
 .book-right .page-content p {
-  color: #ff1493;
+  color: #0000FF;
   font-size: 18px;
   line-height: 1.8;
   text-align: center;
@@ -256,7 +366,7 @@ body {
 
 .book-instruction {
   position: absolute;
-  bottom: -60px;
+  bottom: -160px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
@@ -377,8 +487,14 @@ body {
     font-size: 80px;
   }
    .logo-top-center img {
-    width: 120px;
+    width: 100px;
   }
+  /* .happy-valentine h1 {
+    white-space: normal; 
+    border-right: none;    
+    animation: fadeInText 2s forwards;
+    width: auto;
+  } */
   
   .valentine-start .heart-icon {
     font-size: 60px;
@@ -440,7 +556,7 @@ body {
   }
   
   .logo-top-center img {
-    width: 100px;
+    width: 150px;
   }
   
   .happy-valentine h1 {
@@ -452,7 +568,7 @@ body {
   }
   
   .cupid img {
-    width: 70px;
+    width: 100px;
   }
   
   .cupid-top-left {

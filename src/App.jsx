@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import logo from "./assets/logo_ready.webp";
+import bookBg from "./assets/book_bg_back.webp";
+import leftCupid from "./assets/left_cupid.webp";
+import rightCupid from "./assets/right_cupid.webp";
+import beMyCover from "./assets/BeMy.jpg";
+import blueHeart from "./assets/blue_heart.png";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -7,6 +13,24 @@ function App() {
   const [bookOpened, setBookOpened] = useState(false);
 
   useEffect(() => {
+    if (step === 1) {
+      const text = "Happy Valentine & Happy Anniversary";
+      const element = document.getElementById("typeText");
+      let i = 0;
+
+      element.innerHTML = "";
+
+      const typing = setInterval(() => {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, 133);
+
+      return () => clearInterval(typing);
+    }
     if (step === 2) {
       createStars();
       createFloatingTexts();
@@ -30,7 +54,7 @@ function App() {
 
   const createFloatingTexts = () => {
     const texts = [
-      "Happy Valentine's & Happy Anniversary bby 💕",
+      "Happy Valentine & Happy Anniversary bby 💕",
       "Anh thương bé My nhiều 💖",
       "Bé My đợi Chảy nhaaaaaaa 💗",
       "Bé My ❤️",
@@ -78,7 +102,6 @@ function App() {
   const handleOpenBook = () => {
     if (!bookOpened) {
       setBookOpened(true);
-      setTimeout(() => setStep(2), 2000);
     }
   };
 
@@ -88,11 +111,7 @@ function App() {
       {step === 0 && (
         <div className="step-0">
           <div className="valentine-start" onClick={() => setStep(1)}>
-            <img
-              src="/src/assets/logo_ready.webp"
-              alt="Valentine Start"
-              className="valentine-image"
-            />
+            <img src={logo} alt="Valentine Start" className="valentine-image" />
             <div className="heart-icon">💕🩵💕</div>
             <p>Bé My nhấn vô đây nha 🩵🩵🩵</p>
           </div>
@@ -104,7 +123,7 @@ function App() {
         <div
           className="step-1"
           style={{
-            backgroundImage: `url(${"/src/assets/book_bg_back.webp"})`,
+            backgroundImage: `url(${bookBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -112,23 +131,23 @@ function App() {
         >
           {/* Logo ở giữa trên */}
           <div className="logo-top-center">
-            <img src="/src/assets/logo_ready.webp" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </div>
           {/* Cupid top left */}
           <div className="cupid cupid-top-left">
-            <img src="/src/assets/left_cupid.webp" alt="Cupid" />
+            <img src={leftCupid} alt="Cupid" />
           </div>
 
           {/* Cupid bottom right */}
           <div className="cupid cupid-bottom-right">
-            <img src="/src/assets/right_cupid.webp" alt="Cupid" />
+            <img src={rightCupid} alt="Cupid" />
           </div>
 
           <div className={`happy-valentine ${showBook ? "fade-out" : ""}`}>
-            <h1>Happy Valentine & Happy Anniversary</h1>
+            <h1 id="typeText">Happy Valentine & Happy Anniversary</h1>
             <div className="subtitle">Bé My ❤️</div>
             <p className="click-instruction" onClick={handleShowBook}>
-              Bé My nhấn típ nha ❤️
+              Bé My nhấn vô đây típ giúp Chảy nha ❤️
             </p>
           </div>
 
@@ -141,26 +160,18 @@ function App() {
               >
                 {/* Book Cover */}
                 <div className="book-cover">
-                  <img src="/src/assets/BeMy.jpg" alt="Book Cover" />
+                  <img src={beMyCover} alt="Book Cover" />
                 </div>
 
                 {/* Right Page - Text */}
                 <div className="book-page book-right">
                   <div className="page-content">
                     <p>
-                      Tết năm đó có cô là cái Tết đặc biệt
                       <br />
-                      nhất với anh, vì có em bên canh. Giáo
+                      Gửi bé My iu dấu của anh, anh cảm ơn em vì đã đến bên anh
                       <br />
-                      khóang khi nận năng đâu năm, điều anh
-                      <br />
-                      nhớ nhất vẫn là nụ cười của hai đứa
-                      <br />
-                      mình trong bức ảnh này. Anh mong
-                      <br />
-                      rằng sau này, nhiều cái Tết nữa mình
-                      <br />
-                      vẫn sẽ ở cạnh nhau 🌸 🌹
+                      Anh mong rằng mình sẽ cùng nhau tạo ra nhiều kỷ niệm đẹp
+                      trong tương lai.
                     </p>
                   </div>
                 </div>
@@ -170,6 +181,15 @@ function App() {
                 <p className="book-instruction">
                   Nhấn vô hình để mở nha bóe ❤️
                 </p>
+              )}
+
+              {bookOpened && (
+                <div
+                  className="book-instruction-continue"
+                  onClick={() => setStep(2)}
+                >
+                  Bé My thúi nhấn vô đây típ nè 🤔🤔🤔
+                </div>
               )}
             </div>
           )}
@@ -184,12 +204,12 @@ function App() {
 
           {/* Trái tim lớn */}
           <div className="center-heart">
-            <img src="/src/assets/blue_heart.png" alt="Big Heart" />
+            <img src={blueHeart} alt="Big Heart" />
           </div>
 
           {/* Vòng tròn ảnh cặp đôi */}
           <div className="photo-circle">
-            <img src="/src/assets/couple-photo.png" alt="Couple Photo" />
+            <img src={beMyCover} alt="Couple Photo" />
           </div>
 
           {/* Container cho chữ chạy */}
