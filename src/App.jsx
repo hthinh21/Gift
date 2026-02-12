@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import BeMy4 from "./assets/BeMy4.jpg";
 import logo from "./assets/logo_ready.webp";
 import bookBg from "./assets/book_bg_back.webp";
 import leftCupid from "./assets/left_cupid.webp";
@@ -99,11 +100,12 @@ function App() {
     setShowBook(true);
   };
 
-  const handleOpenBook = () => {
-    if (!bookOpened) {
-      setBookOpened(true);
-    }
-  };
+  const handleOpenBook = (e) => {
+  // Ngăn không cho click vào scrollbar trigger open book
+  if (!bookOpened && !e.target.closest('.page-content')) {
+    setBookOpened(true);
+  }
+};
 
   return (
     <div className="app">
@@ -164,15 +166,39 @@ function App() {
                   <img src={beMyCover} alt="Book Cover" />
                 </div>
 
+                {/* Left Page - Image (inside) */}
+                <div className="book-page book-left">
+                  <div className="page-content">
+                    <img src={BeMy4} alt="Inside Page" />
+                  </div>
+                </div>
+
                 {/* Right Page - Text */}
                 <div className="book-page book-right">
                   <div className="page-content">
                     <p>
                       <br />
-                      Gửi bé My iu dấu của anh, anh cảm ơn em vì đã đến bên anh
+                      Gửi Vợ My thúiii,
                       <br />
-                      Anh mong rằng mình sẽ cùng nhau tạo ra nhiều kỷ niệm đẹp
-                      trong tương lai.
+                      <br />
+                      Đây là mùa Valentine đầu tiên tụi mình yêu xa, chưa được
+                      nắm tay nhau, chưa được ôm nhau, nhưng anh lúc nào
+                      cũng ở cạnh em. Anh chưa tặng em được bó hoa mùa Valentine
+                      năm nay, nhưng anh hy vọng bó hoa nhỏ em vừa thấy sẽ làm em vui.
+                      <br />
+                      <br />
+                      Cảm ơn em vì đã xuất hiện trong cuộc đời anh, cảm ơn em đã
+                      kiên nhẫn, đã chờ đợi và đã thương anh nhiều đến vậy. Dù
+                      khoảng cách có xa bao nhiêu đi nữa, anh vẫn luôn chọn em.
+                      <br />
+                      <br />
+                      Anh thương bé My nhiều lắm, thương từ những điều nhỏ nhất,
+                      thương cả những lúc em buồn, em mệt, và thương cả tương
+                      lai mà anh mong sẽ có em ở đó.
+                      <br />
+                      
+                      <br />
+                      Yêu em rất nhiều ❤️
                     </p>
                   </div>
                 </div>
@@ -189,7 +215,7 @@ function App() {
                   className="book-instruction-continue"
                   onClick={() => setStep(2)}
                 >
-                  Bé My thúi nhấn vô đây típ nè 🤔🤔🤔
+                  Bé My thúi nhấn vô đây để típ nè 🤔🤔🤔
                 </div>
               )}
             </div>
@@ -210,7 +236,7 @@ function App() {
 
           {/* Vòng tròn ảnh cặp đôi */}
           <div className="photo-circle">
-            <img src={beMyCover} alt="Couple Photo" />
+            <img src={BeMy4} alt="Couple Photo" />
           </div>
 
           {/* Container cho chữ chạy */}
