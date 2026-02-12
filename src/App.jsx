@@ -6,7 +6,7 @@ import leftCupid from "./assets/left_cupid.webp";
 import rightCupid from "./assets/right_cupid.webp";
 import beMyCover from "./assets/BeMy.jpg";
 import blueHeart from "./assets/blue_heart.png";
-
+import Flower from "./components/flower.jsx";
 function App() {
   const [step, setStep] = useState(0);
   const [showBook, setShowBook] = useState(false);
@@ -129,6 +129,7 @@ function App() {
             backgroundRepeat: "no-repeat",
           }}
         >
+          {!showBook && <Flower />}
           {/* Logo ở giữa trên */}
           <div className="logo-top-center">
             <img src={logo} alt="Logo" />

@@ -59,22 +59,23 @@ body {
 
 .book-instruction-continue {
   position: absolute;
-  bottom: -160px; /* GIỐNG book-instruction */
+  bottom: -100px; /* GIỐNG book-instruction */
   left: 50%;
   transform: translateX(-50%);
   
-  font-size: 22px;
+  font-size: 17px;
   font-weight: bold;
   color: white;
   background: linear-gradient(45deg, #ff4fa3, #ff79c6);
-  padding: 15px 40px;
+  padding: 15px 30px;
   border-radius: 50px;
   cursor: pointer;
   animation: bounce 2s infinite;
   user-select: none;
   transition: all 0.3s ease;
   text-align: center;
-  white-space: nowrap;
+  max-width: 90%;
+  white-space: normal;
 }
 
 .book-instruction-continue:hover {
@@ -102,12 +103,17 @@ body {
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #E3F2FD 0%, #ffb6c1 100%);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .valentine-start {
   text-align: center;
   cursor: pointer;
   animation: pulse 2s infinite;
+  position: relative;
+  z-index: 2;
 }
 
 .valentine-start h1 {
@@ -216,6 +222,25 @@ body {
   transition: opacity 1s ease-out;
   max-width: 90%;
   margin: 0 auto;
+  position: relative;
+  z-index: 20;
+  text-shadow:
+    -3px -3px 0 white,
+     3px -3px 0 white,
+    -3px  3px 0 white,
+     3px  3px 0 white;
+}
+
+.happy-valentine::before {
+  content: "";
+  position: absolute;
+  inset: -10px -16px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 20px;
+  z-index: -1;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.18);
 }
 
 .happy-valentine.fade-out {
@@ -232,7 +257,7 @@ body {
 
 .happy-valentine .subtitle {
   font-size: 40px;
-  color: #8EC5E8;
+  color: #0000ff;
   margin-top: 30px;
   opacity: 0;
   animation: fadeInText 8s forwards;
@@ -489,6 +514,12 @@ text-shadow:
    .logo-top-center img {
     width: 100px;
   }
+
+  .book-instruction-continue {
+    font-size: 18px;
+    padding: 12px 25px;
+    bottom: -160px;
+  }
   /* .happy-valentine h1 {
     white-space: normal; 
     border-right: none;    
@@ -549,6 +580,13 @@ text-shadow:
 @media (max-width: 480px) {
   .valentine-start h1 {
     font-size: 60px;
+  }
+
+  .book-instruction-continue {
+    font-size: 15px;
+    padding: 10px 18px;
+    bottom: -160px;
+    border-radius: 30px;
   }
 
   .logo-top-center {
