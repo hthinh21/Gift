@@ -1312,3 +1312,10 @@
   -webkit-animation-play-state: paused !important;
           animation-play-state: paused !important;
 }
+
+/* Cho mobile to hơn */
+@media (max-width: 768px) {
+  .flowers {
+    transform: scale(1.8); /* Hoặc 1.8, 2.0 tùy bạn muốn to bao nhiêu */
+  }
+}
